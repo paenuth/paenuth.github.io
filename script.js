@@ -1,47 +1,46 @@
-// Smooth scroll
+// Smooth scroll functionality
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
         });
     });
 });
 
-// Mobile Menu Toggle
+// Mobile Menu Handling
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
+// Toggle menu
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
     navLinks.classList.toggle('active');
     hamburger.classList.toggle('active');
 });
 
-// Close menu when clicking a link
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+
+// Close menu on scroll
+window.addEventListener('scroll', () => {
+    if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+
+// Close menu when clicking links
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         hamburger.classList.remove('active');
     });
 });
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.container') && !e.target.closest('.nav-links')) {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-    }
-});
-
-// Project filter system (optional)
-const filterProjects = (category) => {
-    // Add filtering logic next
-};
-
-// Dark/light mode toggle (optional)
-const modeToggle = document.getElementById('mode-toggle');
-if(modeToggle) {
-    modeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-    });
-}

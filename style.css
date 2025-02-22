@@ -102,10 +102,12 @@ nav .container {
     transition: all 0.3s ease;
 }
 
-/* Mobile Navigation - Updated */
+/* Updated Mobile Menu Section */
 @media (max-width: 768px) {
     .hamburger {
         display: block;
+        position: relative; /* Ensure proper positioning */
+        z-index: 1001; /* Higher than nav-links */
     }
 
     .nav-links {
@@ -117,23 +119,26 @@ nav .container {
         background: var(--dark);
         flex-direction: column;
         padding: 6rem 2rem;
-        transition: all 0.3s ease;
-        z-index: 999;
+        transition: right 0.3s ease; /* Animate only right property */
+        z-index: 1000;
         box-shadow: -10px 0 20px rgba(0,0,0,0.2);
+        overflow-y: auto; /* Prevent content overflow */
     }
 
     .nav-links.active {
         right: 0;
     }
 
-    .nav-links a {
-        padding: 1rem 0;
-        font-size: 1.2rem;
+    /* Ensure hamburger remains visible */
+    .container {
+        position: relative;
+        z-index: 1002; /* Higher than nav-links */
     }
+}
 
-    .hero {
-        padding: 6rem 0 2rem;
-    }
+/* Add this to fix section scrolling */
+section {
+    scroll-margin-top: 80px; /* Adjust based on your nav height */
 }
 
 /* Hamburger Animation */
@@ -147,6 +152,11 @@ nav .container {
 
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Add scroll-margin-top to all sections */
+section {
+    scroll-margin-top: 80px; /* Adjust based on your nav height */
 }
 
 /* Hero Section */

@@ -1,11 +1,14 @@
-// Smooth scroll functionality
+// Updated Smooth Scroll with Offset Calculation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        const headerOffset = document.querySelector('nav').offsetHeight;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        
+        window.scrollTo({
+            top: targetPosition - headerOffset,
+            behavior: 'smooth'
         });
     });
 });

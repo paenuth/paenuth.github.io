@@ -1,3 +1,12 @@
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    touch-action: pan-y; /* Prevent zoom gestures */
+}
+
 :root {
     --primary: #2A9D8F;
     --secondary: #264653;
@@ -28,11 +37,11 @@ body {
 
 /* Navigation */
 nav {
-    background: rgba(26, 26, 26, 0.98);
+    background: var(--dark) !important; /* Solid background */
     padding: 1.2rem 0;
-    position: sticky;
+    position: fixed;
     top: 0;
-    backdrop-filter: blur(12px);
+    width: 100%;
     z-index: 1000;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
@@ -106,8 +115,8 @@ nav .container {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
-        position: relative; /* Ensure proper positioning */
-        z-index: 1001; /* Higher than nav-links */
+        position: relative;
+        z-index: 1001; /* Higher than nav */
     }
 
     .nav-links {
@@ -119,22 +128,28 @@ nav .container {
         background: var(--dark);
         flex-direction: column;
         padding: 6rem 2rem;
-        transition: right 0.3s ease; /* Animate only right property */
-        z-index: 1000;
+        transition: right 0.3s ease;
+        z-index: 999;
         box-shadow: -10px 0 20px rgba(0,0,0,0.2);
-        overflow-y: auto; /* Prevent content overflow */
     }
 
     .nav-links.active {
         right: 0;
     }
 
-    /* Ensure hamburger remains visible */
-    .container {
-        position: relative;
-        z-index: 1002; /* Higher than nav-links */
+    /* Prevent content overlap */
+    .hero {
+        margin-top: 70px;
     }
 }
+
+/* to prevent zoom */
+    @viewport {
+        width: device-width;
+        zoom: 1.0;
+        user-zoom: fixed;
+    }
+    
 
 /* Add this to fix section scrolling */
 section {

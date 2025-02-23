@@ -2,4 +2,4 @@
 
 # Website Link: paenuth.github.io
 
-**Developer | Blockchain Innovator | Continuous Learner**
+**Developer | Blockchain | Continuous Learner**

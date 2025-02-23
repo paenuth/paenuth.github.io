@@ -1,4 +1,19 @@
 /*
-  X-Frame-Options: DENY
+  Content-Security-Policy: 
+    default-src 'self';
+    script-src 'self' 'strict-dynamic' https://cdnjs.cloudflare.com;
+    style-src 'self' https://cdnjs.cloudflare.com;
+    font-src 'self' https://cdnjs.cloudflare.com;
+    img-src 'self' data: https://cdnjs.cloudflare.com;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    require-trusted-types-for 'script';
+    upgrade-insecure-requests;
+    report-uri https://your-report-collector.com/csp-report
   X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), midi=(), camera=(), microphone=(), fullscreen=(self), payment=(), usb=(), gyroscope=(), magnetometer=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload

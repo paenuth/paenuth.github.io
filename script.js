@@ -1,4 +1,4 @@
-// Updated Smooth Scroll with Offset Calculation
+ // Updated Smooth Scroll with Offset Calculation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
